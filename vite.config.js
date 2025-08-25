@@ -8,6 +8,6 @@ export default defineConfig({
     port: 3011,
   },
   preview: {
-    allowedHosts: ["app.tigerinvites.com"], // Add your allowed host here
+    allowedHosts: ["tigerinvites.com"], // Add your allowed host here
   },
 });
