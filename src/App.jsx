@@ -244,7 +244,6 @@ export default function App() {
         </Box>
         <Box
           sx={{
-            minHeight: "100vh",
             backgroundImage: `url(${tigerBg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -256,7 +255,7 @@ export default function App() {
             justifyContent: "center",
           }}
         >
-          <Box maxWidth="lg" width={"100%"} sx={{ textAlign: "center", mt: 4 }}>
+          <Box maxWidth="md" width={"100%"} sx={{ textAlign: "center", mt: 4 }}>
             {/* Logo + Tagline */}
             {/* <Box sx={{ mb: 2 }}>
               <img
