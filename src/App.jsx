@@ -244,7 +244,7 @@ export default function App() {
         </Box>
         <Box
           sx={{
-            backgroundImage: `url(${tigerBg})`,
+            // backgroundImage: `url(${tigerBg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             color: "#fff",
