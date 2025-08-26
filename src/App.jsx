@@ -56,7 +56,7 @@ export default function App() {
               fontSize: "0.9rem",
             }}
           >
-            သင်လေးစားရပါသော ဧည့်သည်ကြီးများအတွက်
+            သို့လေးစားရပါသော ဧည့်သည်ကြီးများအတွက်
           </Typography>
         </Box>
 
