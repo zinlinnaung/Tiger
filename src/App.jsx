@@ -238,8 +238,8 @@ export default function App() {
         >
           <Typography sx={{ fontSize: "0.95rem", lineHeight: 1.7 }}>
             <span style={{ color: "#ff9800", fontWeight: 800 }}>RSVP :</span>{" "}
-            ဦးအာမဏိအနားတင်ရောက်ရင် ဆက်ပြော လက်မှတ်ထည့်သင့်
-            စရင်ဆောင်ရွက်ပေးပါရန်။
+            ပွဲအခမ်းအနားအားတက်ရောက်ရန် ဖော်ပြပါ လင့်ခ်မှတစ်ဆင့်
+            စာရင်းပေးသွင်းနိုင်ပါသည်။
           </Typography>
         </Box>
         <Box
