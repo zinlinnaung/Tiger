@@ -7,36 +7,30 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-import tigerBg from "./assets/bg.jpg";
-import tigerLogo from "./assets/tiger.png";
+import tigerBg from "./assets/background.png";
+import tigerBg2 from "./assets/bg.png";
+import texture from "./assets/texture.png";
+import tigerLogo from "./assets/logo.png";
+import ArrowLogo from "./assets/arrow.png";
 
 export default function App() {
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        backgroundImage: `url(${tigerBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundImage: `url(${tigerBg}), url(${tigerBg2})`,
+        backgroundRepeat: "no-repeat, no-repeat",
+        backgroundPosition: "top center, bottom center", // one on top, one on bottom
+        backgroundSize: "contain, cover", // adjust as needed
         color: "#fff",
-        py: 4,
-        px: 2,
         display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "center",
+        flexDirection: "column",
       }}
     >
-      <Container maxWidth="xs" sx={{ textAlign: "center", mt: 8 }}>
-        {/* Tiger Logo */}
-        <Box>
-          <img
-            src={tigerLogo}
-            alt="Tiger Logo"
-            style={{ width: "50%", height: "100%", objectFit: "contain" }}
-          />
-        </Box>
-
-        {/* Burmese Tilt Box */}
+      <Container
+        maxWidth="xs"
+        sx={{ textAlign: "center", mt: 31, width: "95%" }}
+      >
         <Box
           sx={{
             border: "2px solid #fff",
@@ -44,7 +38,7 @@ export default function App() {
             px: 2,
             py: 0.5,
             borderRadius: "2px",
-            mb: 2,
+            mb: 1,
             transform: "skewX(-5deg)",
           }}
         >
@@ -115,13 +109,19 @@ export default function App() {
             borderRadius: 2,
             color: "#fff",
             mb: 3,
+            backgroundImage: `url(${texture})`, // your image
+            backgroundSize: "cover", // cover full area
+            backgroundPosition: "center", // center align
+            backgroundRepeat: "no-repeat",
           }}
         >
           <CardContent sx={{ px: 2, py: 2 }}>
             <Typography sx={{ mb: 2, fontSize: "0.9rem" }}>
               <strong>Date</strong>
               <br />
-              17<sup>th</sup> September, 2025
+              <span style={{ color: "#ff9800", fontWeight: "bold" }}>
+                17<sup>th</sup> September, 2025
+              </span>
             </Typography>
 
             <Typography sx={{ mb: 2, fontSize: "0.9rem" }}>
@@ -135,7 +135,9 @@ export default function App() {
             <Typography sx={{ mb: 2, fontSize: "0.9rem" }}>
               <strong>Attire</strong>
               <br />
-              Street-smart
+              <span style={{ color: "#ff9800", fontWeight: "bold" }}>
+                Street-smart
+              </span>
             </Typography>
 
             <Typography sx={{ fontSize: "0.9rem" }}>
@@ -230,18 +232,40 @@ export default function App() {
             border: "1.5px solid rgba(255,255,255,0.75)",
             boxShadow: "0 3px 0 rgba(0,0,0,0.25)",
             // dark translucent panel + angled stripes like the reference
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), repeating-linear-gradient(-30deg, rgba(255,255,255,0.08) 0 16px, rgba(255,255,255,0.02) 16px 32px)",
+            backgroundImage: `url(${texture})`, // your image
+            backgroundSize: "cover", // cover full area
+            backgroundPosition: "center", // center align
+            backgroundRepeat: "no-repeat",
             backdropFilter: "blur(1px)",
             textAlign: "left",
           }}
         >
           <Typography sx={{ fontSize: "0.95rem", lineHeight: 1.7 }}>
             <span style={{ color: "#ff9800", fontWeight: 800 }}>RSVP :</span>{" "}
-            ပွဲအခမ်းအနားအားတက်ရောက်ရန် ဖော်ပြပါ လင့်ခ်မှတစ်ဆင့်
+            ပွဲအခမ်းအနားအားတက်ရောက်ရန်ဖော်ပြပါလင့်ခ်မှတစ်ဆင့်
             စာရင်းပေးသွင်းနိုင်ပါသည်။
           </Typography>
         </Box>
+        <Box
+          sx={{
+            display: "flex",
+            mt: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            height: "60px", // just enough space for small icon
+          }}
+        >
+          <img
+            src={ArrowLogo}
+            alt="Arrow Logo"
+            style={{
+              width: "60px", // ✅ make it small
+              height: "60px", // keep it square
+              objectFit: "contain",
+            }}
+          />
+        </Box>
+
         <Box
           sx={{
             // backgroundImage: `url(${tigerBg})`,
@@ -255,7 +279,7 @@ export default function App() {
             justifyContent: "center",
           }}
         >
-          <Box maxWidth="md" width={"100%"} sx={{ textAlign: "center", mt: 4 }}>
+          <Box maxWidth="md" width={"100%"} sx={{ textAlign: "center" }}>
             {/* Logo + Tagline */}
             {/* <Box sx={{ mb: 2 }}>
               <img
@@ -283,7 +307,10 @@ export default function App() {
             <Card
               sx={{
                 width: "100%",
-                background: "rgba(0,0,50,0.6)",
+                backgroundImage: `url(${texture})`, // your image
+                backgroundSize: "cover", // cover full area
+                backgroundPosition: "center", // center align
+                backgroundRepeat: "no-repeat",
                 borderRadius: 2,
                 border: "1.5px solid rgba(255,255,255,0.5)",
                 boxShadow: "0 3px 6px rgba(0,0,0,0.3)",
@@ -407,7 +434,7 @@ export default function App() {
                 },
               }}
             >
-              Find My Location
+              Submit
             </Button>
           </Box>
         </Box>
