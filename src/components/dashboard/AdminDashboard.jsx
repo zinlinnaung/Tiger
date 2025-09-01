@@ -8,6 +8,7 @@ import {
   Button,
   Tabs,
   Tab,
+  CircularProgress,
 } from "@mui/material";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import SearchIcon from "@mui/icons-material/Search";
@@ -29,6 +30,7 @@ const AdminDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [tabValue, setTabValue] = useState(0); // 0 = Pending, 1 = Confirmed
+  const [loadingId, setLoadingId] = useState(null); // track loading row
 
   // Fetch API data
   const fetchRecords = async () => {
@@ -110,6 +112,7 @@ const AdminDashboard = () => {
   };
 
   const handleConfirm = async (record) => {
+    setLoadingId(record.id);
     try {
       await axios.patch(
         `https://api.tigerinvites.com/api/invited-people/${record.id}`,
@@ -141,6 +144,8 @@ const AdminDashboard = () => {
     } catch (err) {
       console.error(err);
       alert("Failed to confirm or send email. Please try again.");
+    } finally {
+      setLoadingId(null);
     }
   };
 
@@ -175,17 +180,26 @@ const AdminDashboard = () => {
                 showInMenu={false}
                 onClick={() => handleConfirm(params.row)}
                 icon={
-                  <Button
-                    variant="contained"
-                    size="small"
-                    sx={{
-                      backgroundColor: "#1976d2",
-                      color: "white",
-                      "&:hover": { backgroundColor: "#1565c0" },
-                    }}
-                  >
-                    Confirm
-                  </Button>
+                  loadingId === params.row.id ? (
+                    <CircularProgress size={20} color="inherit" />
+                  ) : (
+                    <Button
+                      variant="contained"
+                      size="small"
+                      disabled={loadingId !== null} // disable all while loading
+                      sx={{
+                        backgroundColor: "#1976d2",
+                        color: "white",
+                        borderRadius: 1,
+                        boxShadow: "none",
+                        textTransform: "none",
+                        "&:hover": { backgroundColor: "#1565c0" },
+                        "&:focus": { outline: "none" }, // remove oval outline
+                      }}
+                    >
+                      Confirm
+                    </Button>
+                  )
                 }
               />,
             ]
@@ -234,22 +248,8 @@ const AdminDashboard = () => {
             onChange={(e, newVal) => setTabValue(newVal)}
             sx={{ mb: 2 }}
           >
-            <Tab
-              label="Pending"
-              disableRipple
-              sx={{
-                "&.Mui-selected": { outline: "none" },
-                "&.Mui-focusVisible": { outline: "none" },
-              }}
-            />
-            <Tab
-              label="Confirmed"
-              disableRipple
-              sx={{
-                "&.Mui-selected": { outline: "none" },
-                "&.Mui-focusVisible": { outline: "none" },
-              }}
-            />
+            <Tab label="Pending" disableRipple />
+            <Tab label="Confirmed" disableRipple />
           </Tabs>
 
           <Box display="flex" justifyContent="space-between" mb={1}>
