@@ -100,10 +100,10 @@ export default function App() {
         >
           You are cordially invited to the{" "}
           <span style={{ color: "#ff9800", fontWeight: "bold" }}>
-            Tiger New Bottle Design Launch Event
+            Tiger's Bold New Identity event
           </span>{" "}
-          dinner, celebrating the bold original flavor and innovative new design
-          of the Tiger bottle.
+          dinner, celebrating the bold original flavor and innovative new
+          designs of the Tiger bottle.
           <br />
           The event will be held according to the attached program.
         </Typography>
@@ -135,7 +135,7 @@ export default function App() {
             <Typography sx={{ mb: 2, fontSize: "0.9rem" }}>
               <strong>Attire</strong>
               <br />
-              Formal & Urban Chic
+              Street-smart
             </Typography>
 
             <Typography sx={{ fontSize: "0.9rem" }}>
