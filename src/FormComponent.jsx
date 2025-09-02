@@ -108,11 +108,12 @@ export default function FormComponent() {
         <Box sx={{ mb: 4 }}>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             ရဲရင့်တဲ့မူလအရသာနဲ့ ဆန်းသစ်လိုက်တဲ့{" "}
-            <span style={{ color: "#ff9800", fontWeight: 700 }}> Tiger </span>၏
-            ဒီဇိုင်းပြောင်းလဲမှု
+            <span style={{ color: "#ff9800", fontWeight: 700 }}> Tiger </span>
+            ရဲ့ ဒီဇိုင်းသစ်ပြောင်းလဲမှု
           </Typography>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            မိတ်ဆက်ခြင်းအထိမ်းအမှတ်ညစာစားပွဲအခမ်းအနားကိုတစ်ဖက်ပါအစီအစဉ်အတိုင်း
+            မိတ်ဆက်ခြင်း အထိမ်းအမှတ် ညစာစားပွဲအခမ်းအနားကို အောက်ပါ
+            အစီအစဉ်အတိုင်း
           </Typography>
 
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
