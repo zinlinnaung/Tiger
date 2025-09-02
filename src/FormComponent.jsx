@@ -112,8 +112,10 @@ export default function FormComponent() {
             ရဲ့ ဒီဇိုင်းသစ်ပြောင်းလဲမှု
           </Typography>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            မိတ်ဆက်ခြင်း အထိမ်းအမှတ် ညစာစားပွဲအခမ်းအနားကို အောက်ပါ
-            အစီအစဉ်အတိုင်း
+            မိတ်ဆက်ခြင်း အထိမ်းအမှတ် ညစာစားပွဲအခမ်းအနားကို
+          </Typography>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+            အောက်ပါ အစီအစဉ်အတိုင်း
           </Typography>
 
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
