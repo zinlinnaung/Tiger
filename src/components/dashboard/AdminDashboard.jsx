@@ -127,6 +127,7 @@ const AdminDashboard = () => {
         to: record.email,
         subject: "Invitation of Tiger's Bold New Identity event dinner",
         context: {
+          id: record.id,
           guestName: record.name,
           eventName: "Tiger's Bold New Identity event dinner",
           eventDate: "17th September, 2025",
