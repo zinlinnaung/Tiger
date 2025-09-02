@@ -129,7 +129,7 @@ const AdminDashboard = () => {
         context: {
           id: record.id,
           guestName: record.name,
-          additionalGuestName: record.additional_guest_name,
+          additionalGuestName: record.additionalGuestName,
           eventName: "Tiger's Bold New Identity event dinner",
           eventDate: "17th September, 2025",
           eventTime: "6:00 PM to 8:30 PM",
