@@ -11,6 +11,7 @@ import EnatDashboard from "../components/Enat/EnatDashboard";
 import FerrovitDashboard from "../components/Ferrovit/FerrovitDashboard";
 import GlucomealDashboard from "../components/Glucomeal/GlucomealDashboard";
 import FormComponent from "../FormComponent";
+import EditPage from "../components/EditPage";
 
 export const RouterComponent = () => {
   return (
@@ -33,6 +34,7 @@ export const RouterComponent = () => {
       {/* Wrap all dashboard routes in Layout */}
 
       <Route path="/form" element={<FormComponent />} />
+      <Route path="/edit" element={<EditPage />} />
     </Routes>
   );
 };
