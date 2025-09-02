@@ -9,15 +9,18 @@ import {
   Typography,
   IconButton,
   useMediaQuery,
+  Divider,
 } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const drawerWidth = 240;
 
 const Sidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 1090px)");
 
@@ -34,56 +37,92 @@ const Sidebar = () => {
 
   const handleDrawerToggle = () => setOpen(!open);
 
+  const handleLogout = () => {
+    localStorage.removeItem("auth"); // Clear login
+    navigate("/login", { replace: true });
+  };
+
   const drawerContent = (
-    <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      {/* Logo / Title */}
-      <Box
-        sx={{
-          p: 2,
-          bgcolor: headerBg,
-          textAlign: "center",
-          borderBottom: "1px solid #333",
-        }}
-      >
-        <Typography variant="h6" fontWeight="bold" color={textColor}>
-          My Admin
-        </Typography>
+    <Box
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <Box>
+        {/* Logo / Title */}
+        <Box
+          sx={{
+            p: 2,
+            bgcolor: headerBg,
+            textAlign: "center",
+            borderBottom: "1px solid #333",
+          }}
+        >
+          <Typography variant="h6" fontWeight="bold" color={textColor}>
+            My Admin
+          </Typography>
+        </Box>
+
+        {/* Menu List */}
+        <List sx={{ mt: 2 }}>
+          {menuItems.map(({ text, icon, path }) => {
+            const selected = location.pathname === path;
+            return (
+              <ListItem
+                button
+                key={text}
+                component={Link}
+                to={path}
+                onClick={isMobile ? handleDrawerToggle : undefined}
+                sx={{
+                  backgroundColor: selected ? selectedColor : "transparent",
+                  "&:hover": {
+                    backgroundColor: hoverColor,
+                  },
+                  "& .MuiListItemText-primary": {
+                    color: selected ? "#111" : textColor,
+                    fontWeight: selected ? "bold" : "normal",
+                  },
+                  "& .MuiListItemIcon-root": {
+                    color: selected ? "#111" : textColor,
+                  },
+                  transition: "background-color 0.3s, color 0.3s",
+                }}
+              >
+                <ListItemIcon sx={{ color: selected ? "#111" : textColor }}>
+                  {icon}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            );
+          })}
+        </List>
       </Box>
 
-      {/* Menu List */}
-      <List sx={{ mt: 2 }}>
-        {menuItems.map(({ text, icon, path }) => {
-          const selected = location.pathname === path;
-          return (
-            <ListItem
-              button
-              key={text}
-              component={Link}
-              to={path}
-              onClick={isMobile ? handleDrawerToggle : undefined}
-              sx={{
-                backgroundColor: selected ? selectedColor : "transparent",
-                "&:hover": {
-                  backgroundColor: hoverColor,
-                },
-                "& .MuiListItemText-primary": {
-                  color: selected ? "#111" : textColor,
-                  fontWeight: selected ? "bold" : "normal",
-                },
-                "& .MuiListItemIcon-root": {
-                  color: selected ? "#111" : textColor,
-                },
-                transition: "background-color 0.3s, color 0.3s",
-              }}
-            >
-              <ListItemIcon sx={{ color: selected ? "#111" : textColor }}>
-                {icon}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          );
-        })}
-      </List>
+      {/* Logout Button at Bottom */}
+      <Box>
+        <Divider sx={{ bgcolor: "#333" }} />
+        <ListItem
+          button
+          onClick={handleLogout}
+          sx={{
+            "&:hover": { backgroundColor: hoverColor },
+            "& .MuiListItemText-primary": {
+              color: textColor,
+              fontWeight: "bold",
+            },
+            "& .MuiListItemIcon-root": { color: textColor },
+          }}
+        >
+          <ListItemIcon>
+            <LogoutIcon />
+          </ListItemIcon>
+          <ListItemText primary="Logout" />
+        </ListItem>
+      </Box>
     </Box>
   );
 
