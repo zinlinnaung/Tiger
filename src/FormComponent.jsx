@@ -88,7 +88,7 @@ export default function FormComponent() {
             px: 2.5,
             py: 0.8,
             borderRadius: "4px",
-            transform: "skewX(-40deg)",
+            transform: "skewX(-35deg)",
             mb: 2.5,
           }}
         >
@@ -97,16 +97,16 @@ export default function FormComponent() {
             sx={{
               fontWeight: 700,
               fontSize: "1rem",
-              transform: "skewX(40deg)",
+              transform: "skewX(35deg)",
             }}
           >
-            သို့လေးစားရပါသော ဧည့်သည်ကြီးများခင်ဗျာ
+            သို့ လေးစားရပါသော ဧည့်သည်တော်ကြီးများခင်ဗျာ
           </Typography>
         </Box>
 
         {/* Burmese Paragraph */}
         <Box sx={{ mb: 4 }}>
-          <Typography sx={{ fontSize: "0.8rem", lineHeight: 1.9 }}>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             ရဲရင့်တဲ့မူလအရသာနဲ့ ဆန်းသစ်လိုက်တဲ့{" "}
             <span style={{ color: "#ff9800", fontWeight: 700 }}> Tiger </span>၏
             ဒီဇိုင်းပြောင်းလဲမှု
@@ -115,10 +115,10 @@ export default function FormComponent() {
             မိတ်ဆက်ခြင်းအထိမ်းအမှတ်ညစာစားပွဲအခမ်းအနားကိုတစ်ဖက်ပါအစီအစဉ်အတိုင်း
           </Typography>
 
-          <Typography sx={{ fontSize: "0.8rem", lineHeight: 1.9 }}>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             ကျင်းပပြုလုပ်မည်ဖြစ်သောကြောင့်ကြွရောက်ချီးမြှင့်ပေးပါရန်
           </Typography>
-          <Typography sx={{ fontSize: "0.8rem", lineHeight: 1.9 }}>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             ဖိတ်ကြားအပ်ပါသည်။
           </Typography>
         </Box>
@@ -150,23 +150,23 @@ export default function FormComponent() {
 
         {/* English Invitation */}
         <Box sx={{ mb: 4 }}>
-          <Typography sx={{ fontSize: "0.8rem", lineHeight: 1.9 }}>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             You are cordially invited
           </Typography>
-          <Typography sx={{ fontSize: "0.8rem", lineHeight: 1.9 }}>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             to the{" "}
             <span style={{ color: "#ff9800", fontWeight: "bold" }}>
-              Tiger New Bottle Design Launch Event dinner,
+              Tiger's Bold New Identity event dinner,
             </span>{" "}
           </Typography>
 
-          <Typography
-            sx={{ fontSize: "0.8rem", fontWeight: "bold", lineHeight: 1.9 }}
-          >
-            celebrating the bold original flavor and innovative new design of
-            the Tiger bottle.
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+            celebrating the bold original flavor and
           </Typography>
-          <Typography sx={{ fontSize: "0.8rem", lineHeight: 1.9 }}>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+            innovative new design of the Tiger bottle.
+          </Typography>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             The event will be held according to the attached program.
           </Typography>
         </Box>
@@ -249,7 +249,7 @@ export default function FormComponent() {
                 Attire
               </Typography>
               <Typography sx={{ color: "#ff9800", fontWeight: "bold" }}>
-                Formal & Urban Chic
+                Street-Smart
               </Typography>
             </Box>
 
@@ -422,23 +422,37 @@ export default function FormComponent() {
               columnGap: 2,
             }}
           >
-            <Typography sx={{ opacity: 0.95 }}>05:30 PM</Typography>
-            <Typography>
+            <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
+              05:30 PM
+            </Typography>
+            <Typography sx={{ fontSize: "0.8rem" }}>
               Guest Registration &<br />
               Media Interview Session
             </Typography>
 
-            <Typography sx={{ opacity: 0.95 }}>06:30 PM</Typography>
-            <Typography>Event Opening Session</Typography>
+            <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
+              06:30 PM
+            </Typography>
+            <Typography sx={{ fontSize: "0.8rem" }}>
+              Event Opening Session
+            </Typography>
 
-            <Typography sx={{ opacity: 0.95 }}>07:00 PM</Typography>
-            <Typography>Tiger New Bottle Design Unveiling</Typography>
+            <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
+              07:00 PM
+            </Typography>
+            <Typography sx={{ fontSize: "0.8rem" }}>
+              Tiger New Bottle Design Unveiling
+            </Typography>
 
-            <Typography sx={{ opacity: 0.95 }}>07:30 PM</Typography>
-            <Typography>Dinner Serving</Typography>
+            <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
+              07:30 PM
+            </Typography>
+            <Typography sx={{ fontSize: "0.8rem" }}>Dinner Serving</Typography>
 
-            <Typography sx={{ opacity: 0.95 }}>08:00 PM</Typography>
-            <Typography>
+            <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
+              08:00 PM
+            </Typography>
+            <Typography sx={{ fontSize: "0.8rem" }}>
               Performance of “MERCH Reveal”,
               <br />A Collaboration with Local Brands
             </Typography>
