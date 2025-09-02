@@ -93,7 +93,7 @@ const EditPage = () => {
   }
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="lg">
       <Paper elevation={3} sx={{ p: 4, mt: 4, borderRadius: 2 }}>
         <Typography variant="h5" gutterBottom>
           Edit Invited Person
