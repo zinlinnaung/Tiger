@@ -23,7 +23,6 @@ const EditPage = () => {
     name: "",
     phone: "",
     email: "",
-    additional_guest_name: "",
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -36,8 +35,8 @@ const EditPage = () => {
         const res = await axios.get(
           `https://api.tigerinvites.com/api/invited-people/${id}`
         );
-        const { name, phone, email, additional_guest_name } = res.data;
-        setFormData({ name, phone, email, additional_guest_name });
+        const { name, phone, email } = res.data;
+        setFormData({ name, phone, email });
       } catch (err) {
         console.error("Error fetching data:", err);
         alert("Failed to fetch data!");
@@ -60,7 +59,7 @@ const EditPage = () => {
 
     const body = {
       ...formData,
-      additional_guest: formData.additional_guest_name ? true : false,
+
       confirmed: false, // always set to false when saving
     };
 
@@ -120,13 +119,7 @@ const EditPage = () => {
             onChange={handleChange}
             fullWidth
           />
-          <TextField
-            label="Additional Guest Name"
-            name="additional_guest_name"
-            value={formData.additional_guest_name}
-            onChange={handleChange}
-            fullWidth
-          />
+
           <Button
             variant="contained"
             color="primary"

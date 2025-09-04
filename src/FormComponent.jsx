@@ -583,22 +583,6 @@ export default function FormComponent() {
                     sx={{ background: "#fff", borderRadius: 1 }}
                   />
                 </Box>
-
-                <Box>
-                  <Typography
-                    sx={{ fontSize: "0.85rem", fontWeight: 600, mb: 0.5 }}
-                  >
-                    Additional Guest Name
-                  </Typography>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    size="small"
-                    value={additionalGuestName}
-                    onChange={(e) => setAdditionalGuestName(e.target.value)}
-                    sx={{ background: "#fff", borderRadius: 1 }}
-                  />
-                </Box>
               </CardContent>
             </Card>
 

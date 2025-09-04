@@ -20,7 +20,7 @@ const AdminDashboard = () => {
     name: "",
     phone: "",
     email: "",
-    additionalGuest: "",
+
     startDate: "",
     endDate: "",
   });
@@ -45,8 +45,7 @@ const AdminDashboard = () => {
         name: r.name,
         phone: r.phone,
         email: r.email,
-        additionalGuest: r.additional_guest ? "Yes" : "No",
-        additionalGuestName: r.additional_guest_name || "-",
+
         confirmed: r.confirmed,
         createdAt: new Date(r.created_at),
       }));
@@ -70,9 +69,6 @@ const AdminDashboard = () => {
       const matchesEmail = record.email
         .toLowerCase()
         .includes(filters.email.toLowerCase());
-      const matchesAdditionalGuest = record.additionalGuestName
-        .toLowerCase()
-        .includes(filters.additionalGuest.toLowerCase());
 
       const matchesStartDate =
         !filters.startDate || record.createdAt >= new Date(filters.startDate);
@@ -83,7 +79,6 @@ const AdminDashboard = () => {
         matchesName &&
         matchesPhone &&
         matchesEmail &&
-        matchesAdditionalGuest &&
         matchesStartDate &&
         matchesEndDate
       );
@@ -118,7 +113,7 @@ const AdminDashboard = () => {
         `https://api.tigerinvites.com/api/invited-people/${record.id}`,
         {
           ...record,
-          additional_guest: record.additionalGuest === "Yes",
+
           confirmed: true,
         }
       );
@@ -129,7 +124,6 @@ const AdminDashboard = () => {
         context: {
           id: record.id,
           guestName: record.name,
-          additionalGuestName: record.additionalGuestName,
           eventName: "Tiger's Bold New Identity event dinner",
           eventDate: "17th September, 2025",
           eventTime: "6:00 PM to 8:30 PM",
@@ -156,8 +150,7 @@ const AdminDashboard = () => {
     { field: "name", headerName: "Name", flex: 1 },
     { field: "phone", headerName: "Phone", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
-    { field: "additionalGuest", headerName: "Additional Guest", flex: 1 },
-    { field: "additionalGuestName", headerName: "Guest Name", flex: 1 },
+
     {
       field: "confirmed",
       headerName: "Confirmed",
