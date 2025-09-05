@@ -26,6 +26,7 @@ const EditPage = () => {
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [updated, setUpdated] = useState(false); // track update state
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +60,6 @@ const EditPage = () => {
 
     const body = {
       ...formData,
-
       confirmed: false, // always set to false when saving
     };
 
@@ -68,8 +68,7 @@ const EditPage = () => {
         `https://api.tigerinvites.com/api/invited-people/${id}`,
         body
       );
-      alert("Updated successfully!");
-      navigate(-1); // go back
+      setUpdated(true); // show success message instead of alert
     } catch (err) {
       console.error("Error saving data:", err);
       alert("Failed to update!");
@@ -97,38 +96,48 @@ const EditPage = () => {
         <Typography variant="h5" gutterBottom>
           Edit Invited Person
         </Typography>
-        <Box display="flex" flexDirection="column" gap={2}>
-          <TextField
-            label="Name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            label="Phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            label="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            fullWidth
-          />
 
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSave}
-            disabled={saving}
-          >
-            {saving ? <CircularProgress size={24} color="inherit" /> : "Save"}
-          </Button>
-        </Box>
+        {updated ? (
+          <Box textAlign="center" py={4}>
+            <Typography variant="h6" color="success.main">
+              ✅ Updated successfully. A confirmation email will be sent
+              shortly.
+            </Typography>
+          </Box>
+        ) : (
+          <Box display="flex" flexDirection="column" gap={2}>
+            <TextField
+              label="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              fullWidth
+            />
+            <TextField
+              label="Phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              fullWidth
+            />
+            <TextField
+              label="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              fullWidth
+            />
+
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSave}
+              disabled={saving}
+            >
+              {saving ? <CircularProgress size={24} color="inherit" /> : "Save"}
+            </Button>
+          </Box>
+        )}
       </Paper>
     </Container>
   );
