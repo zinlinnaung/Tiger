@@ -124,11 +124,11 @@ const AdminDashboard = () => {
         context: {
           id: record.id,
           guestName: record.name,
-          eventName: "Tiger's Bold New Identity event dinner",
+          eventName: "Tiger's Bold New Identity event",
           eventDate: "17th September, 2025",
           eventTime: "6:00 PM to 8:30 PM",
           eventVenue: "Yangon Ballroom Novotel Yangon Max",
-          organizerName: "Tiger",
+          organizerName: "The Heineken Tiger Team",
         },
       });
 

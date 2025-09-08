@@ -25,9 +25,22 @@ export default function FormComponent() {
   const [email, setEmail] = useState("");
   const [additionalGuestName, setAdditionalGuestName] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!name.trim()) newErrors.name = "Name is required";
+    if (!phone.trim()) newErrors.phone = "Phone number is required";
+    else if (!/^09\d{7,9}$/.test(phone))
+      newErrors.phone = "Phone number must start with 09 and be valid";
+    if (!email.trim()) newErrors.email = "Email is required";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   // Submit handler
   const handleSubmit = async () => {
+    if (!validate()) return;
     const body = {
       name,
       phone,
@@ -106,23 +119,23 @@ export default function FormComponent() {
 
         {/* Burmese Paragraph */}
         <Box sx={{ mb: 4 }}>
-          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+          {/* <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             ရဲရင့်တဲ့မူလအရသာနဲ့ ဆန်းသစ်လိုက်တဲ့{" "}
             <span style={{ color: "#ff9800", fontWeight: 700 }}> Tiger </span>
             ရဲ့ ဒီဇိုင်းသစ်ပြောင်းလဲမှု
+          </Typography> */}
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+            Tiger ၏ ဒီဇိုင်းပြောင်းလဲမှု မိတ်ဆက်ပွဲအခမ်းအနားအား
           </Typography>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            မိတ်ဆက်ခြင်း အထိမ်းအမှတ် ညစာစားပွဲအခမ်းအနားကို
-          </Typography>
-          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            အောက်ပါ အစီအစဉ်အတိုင်း
+            အောက်ပါ အစီအစဉ်အတိုင်း ကျင်းပပြုလုပ်မည်ဖြစ်ပါသောကြောင့်
           </Typography>
 
-          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+          {/* <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             ကျင်းပပြုလုပ်မည်ဖြစ်သောကြောင့်ကြွရောက်ချီးမြှင့်ပေးပါရန်
-          </Typography>
+          </Typography> */}
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            ဖိတ်ကြားအပ်ပါသည်။
+            ကြွရောက်ချီးမြှင့်ပေးပါရန် ဖိတ်ကြားအပ်ပါသည်။
           </Typography>
         </Box>
 
@@ -147,30 +160,29 @@ export default function FormComponent() {
               fontSize: "1rem",
             }}
           >
-            Esteemed Guests,
+            Esteemed Guests
           </Typography>
         </Box>
 
         {/* English Invitation */}
         <Box sx={{ mb: 4 }}>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            You are cordially invited
+            You are cordially invited to the{" "}
           </Typography>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            to the{" "}
             <span style={{ color: "#ff9800", fontWeight: "bold" }}>
-              Tiger's Bold New Identity event dinner,
+              Tiger's Bold New Identity event,
             </span>{" "}
           </Typography>
 
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            celebrating the bold original flavor and
+            celebrating the refreshed innovative design of Tiger
           </Typography>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            innovative new design of the Tiger bottle.
+            while enjoying Tiger's same bold taste.
           </Typography>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            The event will be held according to the attached program.
+            Kindly see the attached program.
           </Typography>
         </Box>
 
@@ -234,28 +246,6 @@ export default function FormComponent() {
               </Typography>
             </Box>
 
-            {/* Attire */}
-            <Box
-              sx={{
-                mb: 2,
-                pb: 1,
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: "0.9rem",
-                  mb: 1,
-                  borderBottom: "2px solid rgba(255,255,255,0.6)",
-                  boxShadow: "0 2px 0 rgba(149, 137, 137, 0.6)",
-                }}
-              >
-                Attire
-              </Typography>
-              <Typography sx={{ color: "#ff9800", fontWeight: "bold" }}>
-                Street-Smart
-              </Typography>
-            </Box>
-
             {/* Location (no bottom line for last one) */}
             <Box>
               <Typography
@@ -268,14 +258,35 @@ export default function FormComponent() {
               >
                 Location
               </Typography>
-              <Typography sx={{ color: "#ff9800", fontWeight: "bold" }}>
+              <Typography sx={{ color: "#ff9800", fontWeight: "bold", mb: 2 }}>
                 Yangon Ballroom Novotel Yangon Max
+              </Typography>
+            </Box>
+            {/* Attire */}
+            <Box
+              sx={{
+                mb: 2,
+                pb: 1,
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "0.9rem",
+
+                  borderBottom: "2px solid rgba(255,255,255,0.6)",
+                  boxShadow: "0 2px 0 rgba(149, 137, 137, 0.6)",
+                }}
+              >
+                Attire
+              </Typography>
+              <Typography sx={{ color: "#ff9800", fontWeight: "bold" }}>
+                Street-Smart
               </Typography>
             </Box>
           </CardContent>
         </Card>
 
-        <Box sx={{ textAlign: "left", mb: 3, px: 1 }}>
+        {/* <Box sx={{ textAlign: "left", mb: 3, px: 1 }}>
           <Box
             sx={{
               display: "grid",
@@ -382,7 +393,7 @@ export default function FormComponent() {
               အစီအစဉ်တင်ဆက်ဖျော်ဖြေခြင်း
             </Typography>
           </Box>
-        </Box>
+        </Box> */}
 
         {/* PROGRAM SECTION */}
         <Box sx={{ textAlign: "left", mb: 3, px: 1 }}>
@@ -426,25 +437,24 @@ export default function FormComponent() {
             }}
           >
             <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
-              05:30 PM
+              06:00 PM
             </Typography>
             <Typography sx={{ fontSize: "0.8rem" }}>
-              Guest Registration &<br />
-              Media Interview Session
+              Guest Registration
             </Typography>
 
             <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
               06:30 PM
             </Typography>
             <Typography sx={{ fontSize: "0.8rem" }}>
-              Event Opening Session
+              Event Opening Session &<br /> Grand Reveal Performance
             </Typography>
 
             <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
               07:00 PM
             </Typography>
             <Typography sx={{ fontSize: "0.8rem" }}>
-              Tiger New Bottle Design Unveiling
+              Tiger New Design Unveiling
             </Typography>
 
             <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
@@ -456,10 +466,30 @@ export default function FormComponent() {
               08:00 PM
             </Typography>
             <Typography sx={{ fontSize: "0.8rem" }}>
-              Performance of “MERCH Reveal”,
-              <br />A Collaboration with Local Brands
+              <span
+                style={{
+                  color: "#ff9800",
+                  fontWeight: "bold",
+                  fontSize: "0.9rem",
+                }}
+              >
+                MERCH Reveal
+              </span>{" "}
+              Performance
             </Typography>
           </Box>
+        </Box>
+        <Box sx={{ mb: 3 }}>
+          <Typography sx={{ fontSize: "0.8rem", fontStyle: "bold" }}>
+            Grand Reveal တင်ဆက်မှုကို အပြည့်အဝခံစားကြည့်ရှုနိုင်ရန် ညနေ (၆း၃၀)
+            အမီ ပွဲတက်ရောက်ပေးပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။
+          </Typography>
+        </Box>
+        <Box sx={{ mb: 3 }}>
+          <Typography sx={{ fontSize: "0.8rem", fontStyle: "bold" }}>
+            To experience the Grand Reveal, we kindly request you to arrive no
+            later than 6:30PM.*
+          </Typography>
         </Box>
 
         {/* RSVP PANEL */}
@@ -547,6 +577,8 @@ export default function FormComponent() {
                       fullWidth
                       size="small"
                       value={name}
+                      error={!!errors.name}
+                      helperText={errors.name}
                       onChange={(e) => setName(e.target.value)}
                       sx={{ background: "#fff", borderRadius: 1 }}
                     />
@@ -561,6 +593,8 @@ export default function FormComponent() {
                       variant="outlined"
                       fullWidth
                       size="small"
+                      error={!!errors.phone}
+                      helperText={errors.phone}
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       sx={{ background: "#fff", borderRadius: 1 }}
@@ -578,6 +612,8 @@ export default function FormComponent() {
                     variant="outlined"
                     fullWidth
                     size="small"
+                    error={!!errors.email}
+                    helperText={errors.email}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     sx={{ background: "#fff", borderRadius: 1 }}
