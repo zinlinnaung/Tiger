@@ -162,7 +162,7 @@ export default function FormComponent() {
               fontSize: "1rem",
             }}
           >
-            Esteemed Guest
+            Esteemed Guest,
           </Typography>
         </Box>
 
@@ -430,7 +430,7 @@ export default function FormComponent() {
                 fontSize: "2rem",
               }}
             >
-              PORGRAM
+              PROGRAM
             </Typography>
           </Box>
 
