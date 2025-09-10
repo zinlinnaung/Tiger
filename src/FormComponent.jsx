@@ -515,7 +515,7 @@ export default function FormComponent() {
         >
           <Typography sx={{ fontSize: "0.95rem", lineHeight: 1.7 }}>
             <span style={{ color: "#ff9800", fontWeight: 800 }}>
-              RSVP : ပွဲအခမ်းအနားအားတက်ရောက်ရန် ဖော်ပြပါ လင့်ခ်မှတစ်ဆင့်
+              RSVP : ပွဲအခမ်းအနားတက်ရောက်ရန် ဖော်ပြပါ လင့်ခ်မှတစ်ဆင့်
               စာရင်းပေးသွင်းနိုင်ပါသည်။
             </span>
           </Typography>
