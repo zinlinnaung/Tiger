@@ -17,8 +17,10 @@ import tigerBg2 from "./assets/bg.png";
 import texture from "./assets/texture.png";
 import tigerLogo from "./assets/logo.png";
 import ArrowLogo from "./assets/arrow.png";
+import { useNavigate } from "react-router-dom";
 
 export default function FormComponent() {
+  const navigate = useNavigate();
   // Form state
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -62,12 +64,13 @@ export default function FormComponent() {
       );
 
       if (response.ok) {
-        setOpenDialog(true);
+        // setOpenDialog(true);
         // Clear form
         setName("");
         setPhone("");
         setEmail("");
         setAdditionalGuestName("");
+        navigate("/success");
       } else {
         const errorData = await response.json();
         alert("Error: " + (errorData.message || "Something went wrong"));
@@ -101,7 +104,7 @@ export default function FormComponent() {
             px: 2.5,
             py: 0.8,
             borderRadius: "4px",
-            transform: "skewX(-35deg)",
+
             mb: 2.5,
           }}
         >
@@ -110,10 +113,9 @@ export default function FormComponent() {
             sx={{
               fontWeight: 700,
               fontSize: "1rem",
-              transform: "skewX(35deg)",
             }}
           >
-            သို့ လေးစားရပါသော ဧည့်သည်တော်ကြီးများခင်ဗျာ
+            သို့ လေးစားရပါသော ဧည့်သည်တော်ကြီးများ
           </Typography>
         </Box>
 
@@ -125,17 +127,17 @@ export default function FormComponent() {
             ရဲ့ ဒီဇိုင်းသစ်ပြောင်းလဲမှု
           </Typography> */}
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            Tiger ၏ ဒီဇိုင်းပြောင်းလဲမှု မိတ်ဆက်ပွဲအခမ်းအနားအား
+            ရဲရင့်တဲ့မူလအရသာနဲ့ဆန်းသစ်သစ်လိုက်တဲ့Tiger ၏ ဒီဇိုင်းပြောင်းလဲမှု
           </Typography>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            အောက်ပါ အစီအစဉ်အတိုင်း ကျင်းပပြုလုပ်မည်ဖြစ်ပါသောကြောင့်
+            မိတ်ဆက်ပွဲအခမ်းအနားအား အောက်ပါ အစီအစဉ်အတိုင်း
           </Typography>
 
-          {/* <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            ကျင်းပပြုလုပ်မည်ဖြစ်သောကြောင့်ကြွရောက်ချီးမြှင့်ပေးပါရန်
-          </Typography> */}
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            ကြွရောက်ချီးမြှင့်ပေးပါရန် ဖိတ်ကြားအပ်ပါသည်။
+            ကျင်းပပြုလုပ်မည်ဖြစ်သောကြောင့်ကြွရောက်ချီးမြှင့်ပေးပါရန်
+          </Typography>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+            ဖိတ်ကြားအပ်ပါသည်။
           </Typography>
         </Box>
 
@@ -149,39 +151,40 @@ export default function FormComponent() {
             py: 0.5,
             borderRadius: "2px",
             mb: 2,
-            transform: "skewX(-30deg)",
           }}
         >
           <Typography
             variant="subtitle1"
             sx={{
               fontWeight: "bold",
-              transform: "skewX(30deg)",
               fontSize: "1rem",
             }}
           >
-            Esteemed Guests
+            Esteemed Guest
           </Typography>
         </Box>
 
         {/* English Invitation */}
-        <Box sx={{ mb: 4 }}>
+        <Box sx={{ mb: 1 }}>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             You are cordially invited to the{" "}
+            <span style={{ color: "#ff9800", fontWeight: "bold" }}>
+              Tiger's Bold New Identity Launch,
+            </span>{" "}
           </Typography>
-          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+          {/* <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             <span style={{ color: "#ff9800", fontWeight: "bold" }}>
               Tiger's Bold New Identity event,
             </span>{" "}
-          </Typography>
+          </Typography> */}
 
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             celebrating the refreshed innovative design of Tiger
           </Typography>
-          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9, mb: 2 }}>
             while enjoying Tiger's same bold taste.
           </Typography>
-          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
+          <Typography sx={{ fontSize: "0.7rem", lineHeight: 1 }}>
             Kindly see the attached program.
           </Typography>
         </Box>
@@ -447,7 +450,16 @@ export default function FormComponent() {
               06:30 PM
             </Typography>
             <Typography sx={{ fontSize: "0.8rem" }}>
-              Event Opening Session &<br /> Grand Reveal Performance
+              Event Opening Session &<br />{" "}
+              <span
+                style={{
+                  color: "#ff9800",
+                  fontWeight: "bold",
+                  fontSize: "0.9rem",
+                }}
+              >
+                Grand Reveal Performance
+              </span>{" "}
             </Typography>
 
             <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
@@ -478,18 +490,6 @@ export default function FormComponent() {
               Performance
             </Typography>
           </Box>
-        </Box>
-        <Box sx={{ mb: 3 }}>
-          <Typography sx={{ fontSize: "0.8rem", fontStyle: "bold" }}>
-            Grand Reveal တင်ဆက်မှုကို အပြည့်အဝခံစားကြည့်ရှုနိုင်ရန် ညနေ (၆း၃၀)
-            အမီ ပွဲတက်ရောက်ပေးပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။
-          </Typography>
-        </Box>
-        <Box sx={{ mb: 3 }}>
-          <Typography sx={{ fontSize: "0.8rem", fontStyle: "bold" }}>
-            To experience the Grand Reveal, we kindly request you to arrive no
-            later than 6:30PM.*
-          </Typography>
         </Box>
 
         {/* RSVP PANEL */}
@@ -644,6 +644,18 @@ export default function FormComponent() {
               Submit
             </Button>
           </Box>
+        </Box>
+        <Box sx={{ mb: 3 }}>
+          <Typography sx={{ fontSize: "0.8rem", fontStyle: "bold" }}>
+            Grand Reveal တင်ဆက်မှုကို အပြည့်အဝခံစားကြည့်ရှုနိုင်ရန် ညနေ (၆း၃၀)
+            အမီ ပွဲတက်ရောက်ပေးပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။
+          </Typography>
+        </Box>
+        <Box sx={{ mb: 3 }}>
+          <Typography sx={{ fontSize: "0.8rem", fontStyle: "bold" }}>
+            To experience the Grand Reveal, we kindly request you to arrive no
+            later than 6:30PM.*
+          </Typography>
         </Box>
       </Container>
 

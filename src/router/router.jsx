@@ -13,6 +13,7 @@ import GlucomealDashboard from "../components/Glucomeal/GlucomealDashboard";
 import FormComponent from "../FormComponent";
 import EditPage from "../components/EditPage";
 import PrivateRoute from "../components/PrivateRoute"; // 👈 Import
+import Succe from "../SuccessPage";
 
 export const RouterComponent = () => {
   return (
@@ -41,6 +42,7 @@ export const RouterComponent = () => {
       <Route path="/form" element={<FormComponent />} />
       <Route path="/edit" element={<EditPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/success" element={<Succe />} />
     </Routes>
   );
 };
