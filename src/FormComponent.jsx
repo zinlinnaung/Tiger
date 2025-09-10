@@ -645,7 +645,7 @@ export default function FormComponent() {
             </Button>
           </Box>
         </Box>
-        <Box sx={{ mb: 3 }}>
+        {/* <Box sx={{ mb: 3 }}>
           <Typography sx={{ fontSize: "0.8rem", fontStyle: "bold" }}>
             Grand Reveal တင်ဆက်မှုကို အပြည့်အဝခံစားကြည့်ရှုနိုင်ရန် ညနေ (၆း၃၀)
             အမီ ပွဲတက်ရောက်ပေးပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။
@@ -656,7 +656,7 @@ export default function FormComponent() {
             To experience the Grand Reveal, we kindly request you to arrive no
             later than 6:30PM.*
           </Typography>
-        </Box>
+        </Box> */}
       </Container>
 
       {/* Success Dialog */}
