@@ -127,14 +127,16 @@ export default function FormComponent() {
             ရဲ့ ဒီဇိုင်းသစ်ပြောင်းလဲမှု
           </Typography> */}
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            ရဲရင့်တဲ့မူလအရသာနဲ့ဆန်းသစ်သစ်လိုက်တဲ့Tiger ၏ ဒီဇိုင်းပြောင်းလဲမှု
+            ရဲရင့်တဲ့မူလအရသာနဲ့ ဆန်းသစ်လိုက်တဲ့{" "}
+            <span style={{ color: "#ff9800", fontWeight: "bold" }}>Tiger</span>{" "}
+            ၏ ဒီဇိုင်းပြောင်းလဲမှု
           </Typography>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            မိတ်ဆက်ပွဲအခမ်းအနားအား အောက်ပါ အစီအစဉ်အတိုင်း
+            မိတ်ဆက်ပွဲအခမ်းအနားအား အောက်ပါအစီအစဉ်အတိုင်း
           </Typography>
 
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
-            ကျင်းပပြုလုပ်မည်ဖြစ်သောကြောင့်ကြွရောက်ချီးမြှင့်ပေးပါရန်
+            ကျင်းပပြုလုပ်မည်ဖြစ်ပါသောကြောင့် ကြွရောက်ချီးမြှင့်ပေးပါရန်
           </Typography>
           <Typography sx={{ fontSize: "0.7rem", lineHeight: 1.9 }}>
             ဖိတ်ကြားအပ်ပါသည်။
@@ -250,21 +252,7 @@ export default function FormComponent() {
             </Box>
 
             {/* Location (no bottom line for last one) */}
-            <Box>
-              <Typography
-                sx={{
-                  fontSize: "0.9rem",
-                  mb: 1,
-                  borderBottom: "2px solid rgba(255,255,255,0.6)",
-                  boxShadow: "0 2px 0 rgba(149, 137, 137, 0.6)",
-                }}
-              >
-                Location
-              </Typography>
-              <Typography sx={{ color: "#ff9800", fontWeight: "bold", mb: 2 }}>
-                Yangon Ballroom Novotel Yangon Max
-              </Typography>
-            </Box>
+
             {/* Attire */}
             <Box
               sx={{
@@ -284,6 +272,21 @@ export default function FormComponent() {
               </Typography>
               <Typography sx={{ color: "#ff9800", fontWeight: "bold" }}>
                 Street-Smart
+              </Typography>
+            </Box>
+            <Box>
+              <Typography
+                sx={{
+                  fontSize: "0.9rem",
+                  mb: 1,
+                  borderBottom: "2px solid rgba(255,255,255,0.6)",
+                  boxShadow: "0 2px 0 rgba(149, 137, 137, 0.6)",
+                }}
+              >
+                Location
+              </Typography>
+              <Typography sx={{ color: "#ff9800", fontWeight: "bold", mb: 2 }}>
+                Yangon Ballroom Novotel Yangon Max
               </Typography>
             </Box>
           </CardContent>
@@ -417,7 +420,7 @@ export default function FormComponent() {
                 fontSize: "2rem",
               }}
             >
-              Time
+              TIME
             </Typography>
             <Typography
               sx={{
@@ -427,7 +430,7 @@ export default function FormComponent() {
                 fontSize: "2rem",
               }}
             >
-              Program
+              PORGRAM
             </Typography>
           </Box>
 
@@ -458,8 +461,9 @@ export default function FormComponent() {
                   fontSize: "0.9rem",
                 }}
               >
-                Grand Reveal Performance
+                Grand Reveal
               </span>{" "}
+              Performance
             </Typography>
 
             <Typography sx={{ opacity: 0.95, fontSize: "0.8rem" }}>
@@ -510,9 +514,10 @@ export default function FormComponent() {
           }}
         >
           <Typography sx={{ fontSize: "0.95rem", lineHeight: 1.7 }}>
-            <span style={{ color: "#ff9800", fontWeight: 800 }}>RSVP :</span>{" "}
-            ပွဲအခမ်းအနားအားတက်ရောက်ရန်ဖော်ပြပါလင့်ခ်မှတစ်ဆင့်
-            စာရင်းပေးသွင်းနိုင်ပါသည်။
+            <span style={{ color: "#ff9800", fontWeight: 800 }}>
+              RSVP : ပွဲအခမ်းအနားအားတက်ရောက်ရန် ဖော်ပြပါ လင့်ခ်မှတစ်ဆင့်
+              စာရင်းပေးသွင်းနိုင်ပါသည်။
+            </span>
           </Typography>
         </Box>
 
@@ -568,7 +573,12 @@ export default function FormComponent() {
                 <Box sx={{ display: "flex", gap: 1.5, mb: 2 }}>
                   <Box sx={{ flex: 1 }}>
                     <Typography
-                      sx={{ fontSize: "0.85rem", fontWeight: 600, mb: 0.5 }}
+                      sx={{
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        mb: 0.5,
+                        textAlign: "left",
+                      }}
                     >
                       Name
                     </Typography>
@@ -585,7 +595,12 @@ export default function FormComponent() {
                   </Box>
                   <Box sx={{ flex: 1 }}>
                     <Typography
-                      sx={{ fontSize: "0.85rem", fontWeight: 600, mb: 0.5 }}
+                      sx={{
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        mb: 0.5,
+                        textAlign: "left",
+                      }}
                     >
                       Phone Number
                     </Typography>
@@ -604,7 +619,12 @@ export default function FormComponent() {
 
                 <Box sx={{ mb: 2 }}>
                   <Typography
-                    sx={{ fontSize: "0.85rem", fontWeight: 600, mb: 0.5 }}
+                    sx={{
+                      fontSize: "0.85rem",
+                      fontWeight: 600,
+                      mb: 0.5,
+                      textAlign: "left",
+                    }}
                   >
                     Email Address
                   </Typography>
