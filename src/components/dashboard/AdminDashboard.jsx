@@ -20,36 +20,31 @@ const AdminDashboard = () => {
     name: "",
     phone: "",
     email: "",
-
     startDate: "",
     endDate: "",
   });
-
   const [records, setRecords] = useState([]);
   const [filteredRecords, setFilteredRecords] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
-  const [tabValue, setTabValue] = useState(0); // 0 = Pending, 1 = Confirmed
-  const [loadingId, setLoadingId] = useState(null); // track loading row
+  const [tabValue, setTabValue] = useState(0);
+  const [loadingId, setLoadingId] = useState(null);
 
-  // Fetch API data
   const fetchRecords = async () => {
     setLoading(true);
     try {
       const res = await axios.get(
         "https://api.tigerinvites.com/api/invited-people"
       );
-
       const transformed = res.data.map((r) => ({
         id: r.id,
         name: r.name,
         phone: r.phone,
         email: r.email,
-
         confirmed: r.confirmed,
         createdAt: new Date(r.created_at),
+        updatedAt: new Date(r.updated_at),
       }));
-
       setRecords(transformed);
     } catch (err) {
       console.error("Failed to fetch records:", err);
@@ -69,12 +64,10 @@ const AdminDashboard = () => {
       const matchesEmail = record.email
         .toLowerCase()
         .includes(filters.email.toLowerCase());
-
       const matchesStartDate =
         !filters.startDate || record.createdAt >= new Date(filters.startDate);
       const matchesEndDate =
         !filters.endDate || record.createdAt <= new Date(filters.endDate);
-
       return (
         matchesName &&
         matchesPhone &&
@@ -83,7 +76,6 @@ const AdminDashboard = () => {
         matchesEndDate
       );
     });
-
     setFilteredRecords(filtered);
   };
 
@@ -111,35 +103,14 @@ const AdminDashboard = () => {
     try {
       await axios.patch(
         `https://api.tigerinvites.com/api/invited-people/${record.id}`,
-        {
-          ...record,
-
-          confirmed: true,
-        }
+        { confirmed: true }
       );
-
-      await axios.post("https://api.tigerinvites.com/api/email/send", {
-        to: record.email,
-        subject: "Invitation of Tiger's Bold New Identity event dinner",
-        context: {
-          id: record.id,
-          guestName: record.name,
-          eventName: "Tiger's Bold New Identity event",
-          eventDate: "17th September, 2025",
-          eventTime: "6:00 PM to 8:30 PM",
-          eventVenue: "Yangon Ballroom Novotel Yangon Max",
-          organizerName: "The Heineken Tiger Team",
-        },
-      });
-
       setRecords((prev) =>
         prev.map((r) => (r.id === record.id ? { ...r, confirmed: true } : r))
       );
-
-      alert(`Invitation confirmed and email sent to ${record.email}`);
     } catch (err) {
       console.error(err);
-      alert("Failed to confirm or send email. Please try again.");
+      alert("Failed to confirm. Please try again.");
     } finally {
       setLoadingId(null);
     }
@@ -147,10 +118,28 @@ const AdminDashboard = () => {
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
-    { field: "name", headerName: "Name", flex: 1 },
-    { field: "phone", headerName: "Phone", flex: 1 },
-    { field: "email", headerName: "Email", flex: 1 },
+    {
+      field: "name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "phone",
+      headerName: "Phone",
+      flex: 1,
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      flex: 1,
+    },
 
+    {
+      field: "updatedAt",
+      headerName: "Updated At",
+      flex: 1,
+      renderCell: (params) => params.value.toLocaleString(),
+    },
     {
       field: "confirmed",
       headerName: "Confirmed",
@@ -181,7 +170,7 @@ const AdminDashboard = () => {
                     <Button
                       variant="contained"
                       size="small"
-                      disabled={loadingId !== null} // disable all while loading
+                      disabled={loadingId !== null}
                       sx={{
                         backgroundColor: "#1976d2",
                         color: "white",
@@ -189,7 +178,7 @@ const AdminDashboard = () => {
                         boxShadow: "none",
                         textTransform: "none",
                         "&:hover": { backgroundColor: "#1565c0" },
-                        "&:focus": { outline: "none" }, // remove oval outline
+                        "&:focus": { outline: "none" },
                       }}
                     >
                       Confirm
@@ -202,7 +191,6 @@ const AdminDashboard = () => {
     },
   ];
 
-  // Tab-filtered rows
   const displayedRecords = filteredRecords
     .filter((record) =>
       tabValue === 0 ? record.confirmed === false : record.confirmed === true
@@ -212,6 +200,13 @@ const AdminDashboard = () => {
         String(value).toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
+
+  const handleCellDoubleClick = (params) => {
+    if (params.field === "name" || params.field === "email") {
+      navigator.clipboard.writeText(params.value);
+      alert(`${params.field} copied: ${params.value}`);
+    }
+  };
 
   return (
     <Box sx={{ bgcolor: "white", py: 3, minHeight: "84vh", width: "100%" }}>
@@ -237,7 +232,6 @@ const AdminDashboard = () => {
             Invited People Records
           </Typography>
 
-          {/* Tabs */}
           <Tabs
             value={tabValue}
             onChange={(e, newVal) => setTabValue(newVal)}
@@ -287,6 +281,7 @@ const AdminDashboard = () => {
               rowsPerPageOptions={[10]}
               disableSelectionOnClick
               loading={loading}
+              onCellDoubleClick={handleCellDoubleClick}
               sx={{
                 fontSize: "0.85rem",
                 backgroundColor: "#fff",
