@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import tigerBg2 from "./assets/background.png";
 import ArrowLogo from "./assets/arrow.png";
 import texture from "./assets/texture.png";
 
 export default function SuccessPage() {
+  // ✅ Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -20,6 +25,7 @@ export default function SuccessPage() {
         textAlign: "center",
         color: "#fff",
         px: 2,
+        overflowY: "auto", // ✅ enable scrolling if needed
       }}
     >
       {/* Subtitle over background TIGER */}
@@ -28,7 +34,7 @@ export default function SuccessPage() {
         sx={{
           fontWeight: "bold",
           color: "#fa8706",
-          mt: "32vh", // adjust this to sit exactly below TIGER from background
+          mt: "32vh",
           mb: 4,
           fontSize: "1.4rem",
           letterSpacing: 1,
