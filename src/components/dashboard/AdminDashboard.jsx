@@ -101,16 +101,42 @@ const AdminDashboard = () => {
   const handleConfirm = async (record) => {
     setLoadingId(record.id);
     try {
+      // 1. Confirm record
       await axios.patch(
         `https://api.tigerinvites.com/api/invited-people/${record.id}`,
         { confirmed: true }
       );
+
+      // 2. Send email to specific addresses only
+      const recipients = [
+        "hunlin.bit@gmail.com",
+        "twinklesu6@gmail.com",
+        "zinlinnaung.bit@gmail.com",
+      ];
+
+      for (const to of recipients) {
+        await axios.post("https://api.tigerinvites.com/api/email/send", {
+          to,
+          subject: "Invitation of Tiger's Bold New Identity event dinner",
+          context: {
+            id: record.id,
+            guestName: record.name,
+            eventName: "Tiger's Bold New Identity event",
+            eventDate: "17th September, 2025",
+            eventTime: "6:00 PM to 8:30 PM",
+            eventVenue: "Yangon Ballroom Novotel Yangon Max",
+            organizerName: "The Heineken Tiger Team",
+          },
+        });
+      }
+
+      // 3. Update state locally
       setRecords((prev) =>
         prev.map((r) => (r.id === record.id ? { ...r, confirmed: true } : r))
       );
     } catch (err) {
       console.error(err);
-      alert("Failed to confirm. Please try again.");
+      alert("Failed to confirm or send email. Please try again.");
     } finally {
       setLoadingId(null);
     }
@@ -118,22 +144,9 @@ const AdminDashboard = () => {
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-    },
-    {
-      field: "phone",
-      headerName: "Phone",
-      flex: 1,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
-
+    { field: "name", headerName: "Name", flex: 1 },
+    { field: "phone", headerName: "Phone", flex: 1 },
+    { field: "email", headerName: "Email", flex: 1 },
     {
       field: "updatedAt",
       headerName: "Updated At",
