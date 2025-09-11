@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Typography, Button } from "@mui/material";
-import tigerBg2 from "./assets/background.png"; // replace with your
+import { Box, Typography } from "@mui/material";
+import tigerBg2 from "./assets/background.png";
 import ArrowLogo from "./assets/arrow.png";
 import texture from "./assets/texture.png";
 
@@ -17,23 +17,21 @@ export default function SuccessPage() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
-        pt: 34,
-        px: 2,
         textAlign: "center",
         color: "#fff",
+        px: 2,
       }}
     >
-      {/* Title */}
-
-      {/* Subtitle */}
+      {/* Subtitle over background TIGER */}
       <Typography
         variant="h5"
         sx={{
           fontWeight: "bold",
-          //   letterSpacing: 0.5,
           color: "#fa8706",
+          mt: "32vh", // adjust this to sit exactly below TIGER from background
           mb: 4,
           fontSize: "1.4rem",
+          letterSpacing: 1,
         }}
       >
         UNCAGE YOUR TIGER
@@ -50,9 +48,10 @@ export default function SuccessPage() {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backdropFilter: "blur(1px)",
-          px: 1,
-          py: 2,
-          //   maxWidth: 1000,
+          px: 2,
+          py: 3,
+          maxWidth: 400,
+          mb: 3,
         }}
       >
         <Typography variant="body1" sx={{ fontWeight: "bold" }}>
@@ -60,7 +59,7 @@ export default function SuccessPage() {
         </Typography>
         <Typography
           variant="body2"
-          sx={{ fontSize: "0.8rem", fontWeight: "bold" }}
+          sx={{ fontSize: "0.85rem", fontWeight: "bold" }}
         >
           The confirmation letter will be sent to your email soon.
         </Typography>
@@ -71,7 +70,7 @@ export default function SuccessPage() {
         sx={{
           display: "flex",
           mt: 1,
-          mb: 1,
+          mb: 2,
           alignItems: "center",
           justifyContent: "center",
           height: "60px",
@@ -89,30 +88,20 @@ export default function SuccessPage() {
       </Box>
 
       {/* Additional Info */}
-      <Box sx={{ mb: 3 }}>
-        <Typography sx={{ fontSize: "0.8rem", fontStyle: "bold" }}>
-          <span style={{ color: "#ff9800", fontWeight: "bold" }}>
-            {" "}
-            Grand Reveal{" "}
-          </span>
-          တင်ဆက်မှုကို အပြည့်အဝခံစားကြည့်ရှုနိုင်ရန်{" "}
-          <span style={{ color: "#ff9800", fontWeight: "bold" }}>
-            ညနေ (၆း၃၀)
-          </span>{" "}
-          အမီ ပွဲတက်ရောက်ပေးပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။
+      <Box sx={{ mb: 3, maxWidth: 500 }}>
+        <Typography sx={{ fontSize: "0.85rem", fontWeight: "bold" }}>
+          <span style={{ color: "#ff9800" }}>Grand Reveal</span> တင်ဆက်မှုကို
+          အပြည့်အဝခံစားကြည့်ရှုနိုင်ရန်{" "}
+          <span style={{ color: "#ff9800" }}>ညနေ (၆း၃၀)</span> အမီ
+          ပွဲတက်ရောက်ပေးပါရန် မေတ္တာရပ်ခံအပ်ပါသည်။
         </Typography>
       </Box>
-      <Box sx={{ mb: 3 }}>
-        <Typography
-          sx={{ fontSize: "0.8rem", fontStyle: "bold", fontWeight: "bold" }}
-        >
+      <Box sx={{ mb: 3, maxWidth: 500 }}>
+        <Typography sx={{ fontSize: "0.85rem", fontWeight: "bold" }}>
           To experience the{" "}
-          <span style={{ color: "#ff9800", fontWeight: "bold" }}>
-            Grand Reveal
-          </span>
-          ,
-          <br /> we kindly request you to arrive no later than{" "}
-          <span style={{ color: "#ff9800", fontWeight: "bold" }}>6:30PM.</span>
+          <span style={{ color: "#ff9800" }}>Grand Reveal</span>, <br />
+          we kindly request you to arrive no later than{" "}
+          <span style={{ color: "#ff9800" }}>6:30PM.</span>
         </Typography>
       </Box>
     </Box>

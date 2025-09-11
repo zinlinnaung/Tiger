@@ -430,7 +430,7 @@ export default function FormComponent() {
                 fontSize: "2rem",
               }}
             >
-              PROGRAM
+              PROGRAMS
             </Typography>
           </Box>
 
