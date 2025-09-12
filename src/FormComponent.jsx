@@ -73,14 +73,15 @@ export default function FormComponent() {
           "twinklesu6@gmail.com",
           "zinlinnaung.bit@gmail.com",
         ];
+        const data = await response.json();
 
         for (const to of recipients) {
           await axios.post("https://api.tigerinvites.com/api/email/send", {
             to,
             subject: "Invitation of Tiger's Bold New Identity event dinner",
             context: {
-              id: response.id,
-              guestName: response.name,
+              id: data.id,
+              guestName: data.name,
               eventName: "Tiger's Bold New Identity event",
               eventDate: "17th September, 2025",
               eventTime: "6:00 PM to 8:30 PM",
