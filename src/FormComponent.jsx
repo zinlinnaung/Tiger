@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  CircularProgress,
 } from "@mui/material";
 import tigerBg from "./assets/background.png";
 import tigerBg2 from "./assets/bg.png";
@@ -18,6 +19,7 @@ import texture from "./assets/texture.png";
 import tigerLogo from "./assets/logo.png";
 import ArrowLogo from "./assets/arrow.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function FormComponent() {
   const navigate = useNavigate();
@@ -28,6 +30,7 @@ export default function FormComponent() {
   const [additionalGuestName, setAdditionalGuestName] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -50,6 +53,7 @@ export default function FormComponent() {
       additional_guest: additionalGuestName ? true : false,
       additional_guest_name: additionalGuestName || "",
     };
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -64,6 +68,27 @@ export default function FormComponent() {
       );
 
       if (response.ok) {
+        const recipients = [
+          "hunlin.bit@gmail.com",
+          "twinklesu6@gmail.com",
+          "zinlinnaung.bit@gmail.com",
+        ];
+
+        for (const to of recipients) {
+          await axios.post("https://api.tigerinvites.com/api/email/send", {
+            to,
+            subject: "Invitation of Tiger's Bold New Identity event dinner",
+            context: {
+              id: response.id,
+              guestName: response.name,
+              eventName: "Tiger's Bold New Identity event",
+              eventDate: "17th September, 2025",
+              eventTime: "6:00 PM to 8:30 PM",
+              eventVenue: "Yangon Ballroom Novotel Yangon Max",
+              organizerName: "The Heineken Tiger Team",
+            },
+          });
+        }
         // setOpenDialog(true);
         // Clear form
         setName("");
@@ -77,6 +102,8 @@ export default function FormComponent() {
       }
     } catch (err) {
       alert("Network error: " + err.message);
+    } finally {
+      setLoading(false); // stop loading
     }
   };
 
@@ -647,6 +674,7 @@ export default function FormComponent() {
               fullWidth
               variant="contained"
               onClick={handleSubmit}
+              disabled={loading} // disable while loading
               sx={{
                 mt: 1,
                 py: 1.2,
@@ -661,7 +689,11 @@ export default function FormComponent() {
                 },
               }}
             >
-              Submit
+              {loading ? (
+                <CircularProgress size={24} sx={{ color: "#fff" }} />
+              ) : (
+                "Submit"
+              )}
             </Button>
           </Box>
         </Box>

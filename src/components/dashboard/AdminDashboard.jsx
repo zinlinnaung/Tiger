@@ -9,6 +9,7 @@ import {
   Tabs,
   Tab,
   CircularProgress,
+  Snackbar,
 } from "@mui/material";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import SearchIcon from "@mui/icons-material/Search";
@@ -29,6 +30,10 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(false);
   const [tabValue, setTabValue] = useState(0);
   const [loadingId, setLoadingId] = useState(null);
+
+  // 🔹 new states for snackbar
+  const [copiedText, setCopiedText] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const fetchRecords = async () => {
     setLoading(true);
@@ -107,28 +112,28 @@ const AdminDashboard = () => {
         { confirmed: true }
       );
 
-      // 2. Send email to specific addresses only
-      const recipients = [
-        "hunlin.bit@gmail.com",
-        "twinklesu6@gmail.com",
-        "zinlinnaung.bit@gmail.com",
-      ];
+      // 2. Send email to specific addresses only (commented)
+      // const recipients = [
+      //   "hunlin.bit@gmail.com",
+      //   "twinklesu6@gmail.com",
+      //   "zinlinnaung.bit@gmail.com",
+      // ];
 
-      for (const to of recipients) {
-        await axios.post("https://api.tigerinvites.com/api/email/send", {
-          to,
-          subject: "Invitation of Tiger's Bold New Identity event dinner",
-          context: {
-            id: record.id,
-            guestName: record.name,
-            eventName: "Tiger's Bold New Identity event",
-            eventDate: "17th September, 2025",
-            eventTime: "6:00 PM to 8:30 PM",
-            eventVenue: "Yangon Ballroom Novotel Yangon Max",
-            organizerName: "The Heineken Tiger Team",
-          },
-        });
-      }
+      // for (const to of recipients) {
+      //   await axios.post("https://api.tigerinvites.com/api/email/send", {
+      //     to,
+      //     subject: "Invitation of Tiger's Bold New Identity event dinner",
+      //     context: {
+      //       id: record.id,
+      //       guestName: record.name,
+      //       eventName: "Tiger's Bold New Identity event",
+      //       eventDate: "17th September, 2025",
+      //       eventTime: "6:00 PM to 8:30 PM",
+      //       eventVenue: "Yangon Ballroom Novotel Yangon Max",
+      //       organizerName: "The Heineken Tiger Team",
+      //     },
+      //   });
+      // }
 
       // 3. Update state locally
       setRecords((prev) =>
@@ -215,9 +220,14 @@ const AdminDashboard = () => {
     );
 
   const handleCellDoubleClick = (params) => {
-    if (params.field === "name" || params.field === "email") {
+    if (
+      params.field === "name" ||
+      params.field === "email" ||
+      params.field === "phone"
+    ) {
       navigator.clipboard.writeText(params.value);
-      alert(`${params.field} copied: ${params.value}`);
+      setCopiedText(`${params.field} copied: ${params.value}`);
+      setSnackbarOpen(true);
     }
   };
 
@@ -311,6 +321,15 @@ const AdminDashboard = () => {
           </Box>
         </Paper>
       </Box>
+
+      {/* 🔹 Snackbar for copied message */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={2000}
+        onClose={() => setSnackbarOpen(false)}
+        message={copiedText}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      />
     </Box>
   );
 };
